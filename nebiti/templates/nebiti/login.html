@@ -1,0 +1,18 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/log-in.css' %}">
+
+{% include 'nebiti/header.html' %}
+
+
+<h2>შესვლა</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">შესვლა</button>
+  <a href="{% url 'register' %}">რეგისტრაცია</a>
+    <br>
+  <a href="{% url 'home' %}"> დაბრუნდი მთავარ გვერდზე</a>
+</form>
+
+
+{% include 'nebiti/footer.html' %}

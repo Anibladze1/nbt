@@ -1,0 +1,70 @@
+.reactions-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* reactions title */
+.reactions-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #4A4A4A;
+  margin: 1rem 0;
+}
+
+/* reactions table */
+.reactions-table {
+  width: 80%;
+  margin: 1rem 0;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+/* reactions table header */
+.reactions-table-header {
+  background-color: #F2F2F2;
+  font-weight: bold;
+  padding: 0.75rem;
+}
+
+/* reactions post title header */
+.reactions-post-title-header {
+  width: 60%;
+  text-align: left;
+}
+
+/* reactions reaction header */
+.reactions-reaction-header {
+  width: 40%;
+}
+
+/* reactions table row */
+.reactions-table-row:nth-child(even) {
+  background-color: #F8F8F8;
+}
+
+/* reactions table data */
+.reactions-table-data {
+  padding: 0.75rem;
+}
+
+/* reactions post title data */
+.reactions-post-title-data {
+  width: 60%;
+  text-align: left;
+}
+
+/* reactions reaction data */
+.reactions-reaction-data {
+  width: 40%;
+  font-size: 1.2rem;
+}
+
+/* positive reaction */
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}

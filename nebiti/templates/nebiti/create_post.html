@@ -1,0 +1,21 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/create-post.css' %}">
+
+{% include 'nebiti/header.html' %}
+
+
+<div class="main-container">
+    <h2>პოსტის შექმნა</h2>
+
+    <div class="form-container">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">შექმნა</button>
+        </form>
+    </div>
+
+</div>
+
+{% include 'nebiti/footer.html' %}
+

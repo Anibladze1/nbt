@@ -1,0 +1,133 @@
+/* Main Container */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f2f2f2;
+}
+
+.post {
+    border-bottom: 1px solid #1abc9c;
+}
+
+/* Post Container */
+.post-container {
+  width: 80%;
+  margin: 20px 0;
+  border: 1px solid #1abc9c;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: left;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 10px 0px #1abc9c;
+}
+
+/* Post Title */
+.post-container h3 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #1abc9c;
+  text-align: left;
+}
+
+/* Post Author Container */
+.post-author-container {
+  display: flex;
+  align-items: center;
+  background-color: #1abc9c;
+  opacity: 0.9;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+/* Post Author */
+.post-author-container span {
+  font-size: 16px;
+  font-style: italic;
+  margin-left: 10px;
+  text-align: left;
+}
+
+/* Post Content */
+.post-container p:nth-of-type(1) {
+  font-size: 24px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  color: #34495e;
+}
+
+/* Post Reactions */
+.post-container p:nth-of-type(2) {
+  font-size: 16px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  color: #34495e;
+  text-align: center;
+}
+
+.reactions-container {
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+}
+
+/* Post Author */
+.post-container p:nth-of-type(3) {
+  font-size: 14px;
+  font-style: italic;
+  margin-bottom: 20px;
+  color: #34495e;
+  text-align: right;
+  display: block;
+}
+
+/* Post Likes and Dislikes */
+.post-container p:nth-of-type(4) {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #34495e;
+  text-align: left;
+}
+
+/* Like and Dislike Buttons */
+.post-container a {
+  display: inline-block;
+  font-size: 18px;
+  padding: 10px 20px;
+  border: 1px solid #1abc9c;
+  border-radius: 20px;
+  margin: 10px;
+  text-decoration: none;
+  color: #1abc9c;
+  transition: all 0.2s ease-in-out;
+  text-align: left;
+}
+
+.post-container a:hover {
+  background-color: #1abc9c;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+/* Logout Button */
+.logout-button {
+  font-size: 18px;
+  padding: 10px 20px;
+  border: 1px solid #1abc9c;
+  border-radius: 20px;
+  margin: 20px 0;
+  text-decoration: none;
+  color: #1abc9c;
+  transition: all 0.2s ease-in-out;
+  display: block;
+  text-align: left;
+}
+
+.logout-button:hover {
+  background-color: #1abc9c;
+  color: #ffffff;
+  cursor: pointer;
+}

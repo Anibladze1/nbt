@@ -1,0 +1,15 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/header.css' %}">
+
+<header>
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a href="{% url 'home' %}">ნებითი ალგორითმი</a>
+    </div>
+    <ul class="navbar-menu">
+        <li><a href="{% url 'my_reactions' %}">რეაქციები</a></li>
+        <li><a href="#">პროფილი</a></li>
+        <li><a href="#">კონტაქტი</a></li>
+    </ul>
+  </nav>
+</header>
