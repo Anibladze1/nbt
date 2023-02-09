@@ -26,8 +26,8 @@ class LoginForm(forms.Form):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title', 'content']
+        fields = ['title', 'description']
         labels = {
             'title': 'სათაური',
-            'content': 'ტექსტი',
+            'description': 'ტექსტი',
         }

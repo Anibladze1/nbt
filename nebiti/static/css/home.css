@@ -69,9 +69,8 @@
 }
 
 .reactions-container {
-  align-items: center;
   justify-content: center;
-  justify-items: center;
+  display: flex;
 }
 
 /* Post Author */
@@ -103,7 +102,7 @@
   text-decoration: none;
   color: #1abc9c;
   transition: all 0.2s ease-in-out;
-  text-align: left;
+  text-align: center;
 }
 
 .post-container a:hover {
@@ -118,12 +117,11 @@
   padding: 10px 20px;
   border: 1px solid #1abc9c;
   border-radius: 20px;
-  margin: 20px 0;
+  margin: 10px;
   text-decoration: none;
   color: #1abc9c;
   transition: all 0.2s ease-in-out;
-  display: block;
-  text-align: left;
+  text-align: center;
 }
 
 .logout-button:hover {

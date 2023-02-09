@@ -16,12 +16,12 @@
     {% for post in posts %}
       <div class="post">
         <h3 class="post-title">{{ post.title }} </h3>
-        <p class="post-content">{{ post.content }}</p>
-        <p>თანხმობა: {{ post.likes }} Dislikes: {{ post.dislikes }}</p>
+        <p class="post-content">{{ post.description }}</p>
+        <p>თანხმობა: {{ post.likes}} Dislikes: {{ post.dislikes }}</p>
         {% if user.is_authenticated %}
             <div class="reactions-container">
-                <a  href="{% url 'like' post.id %}">ვეთანხმები</a>
-                <a  href="{% url 'dislike' post.id %}">არ ვეთანხმები</a>
+                <a href="{% url 'cast_vote' post.id 1 %}">ვეთანხმები</a>
+                <a href="{% url 'cast_vote' post.id 0 %}">არ ვეთანხმები</a>
                 <br>
             </div>
         <p class="post-author-container">პოსტის ავტორი: {{ post.author }}</p>
@@ -32,11 +32,6 @@
     {% endfor %}
     </div>
 
-    {% if user.is_authenticated %}
-    <div class="logout-button">
-        <a href="{% url 'logout' %}">გამოსვლა</a>
-    </div>
-    {% endif %}
 
 </div>
 

@@ -1,25 +1,32 @@
-from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import RegisterForm, PostForm, LoginForm
-from .models import Post, Reaction
+from django.views import View
+
+from .forms import RegisterForm, LoginForm, PostForm
+from .models import Voter, Post, Vote
 
 
-def home(request):
-    posts = Post.objects.all().order_by('-id')
-    context = {'posts': posts}
-    return render(request, 'nebiti/home.html', context)
+def register(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            Voter.objects.create(user=user, name=user.username)
+            return redirect('login')
+    else:
+        form = RegisterForm()
+    return render(request, 'nebiti/register.html', {'form': form})
 
 
-def login_view(request):
+def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
             user = authenticate(username=username, password=password)
-            if user is not None:
+            if user:
                 login(request, user)
                 return redirect('home')
     else:
@@ -27,24 +34,15 @@ def login_view(request):
     return render(request, 'nebiti/login.html', {'form': form})
 
 
-def logout_view(request):
+@login_required
+def user_logout(request):
     logout(request)
-    return redirect('home')
+    return redirect('login')
 
 
-def register(request):
-    if request.method == 'POST':
-        form = RegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            return redirect('home')
-    else:
-        form = RegisterForm()
-    return render(request, 'nebiti/register.html', {'form': form})
+def home(request):
+    posts = Post.objects.all()
+    return render(request, 'nebiti/home.html', {'posts': posts})
 
 
 @login_required
@@ -62,58 +60,20 @@ def create_post(request):
 
 
 @login_required
-def like(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    reaction, created = Reaction.objects.get_or_create(
-        user=request.user,
-        post=post
-    )
-    if not created:
-        if reaction.reaction:
-            messages.error(request, 'You have already liked this post.')
-        else:
-            reaction.reaction = True
-            reaction.save()
-            post.likes += 1
-            post.dislikes -= 1
-            post.save()
-    else:
-        reaction.reaction = True
-        reaction.save()
-        post.likes += 1
-        post.save()
+def cast_vote(request, post_id, vote):
+    user = request.user
+    try:
+        voter = Voter.objects.get(user=user)
+    except Voter.DoesNotExist:
+        return redirect('home')
+    post = Post.objects.get(id=post_id)
+    vote_obj, created = Vote.objects.get_or_create(voter=voter, post=post)
+    vote_obj.vote = vote
+    vote_obj.save()
     return redirect('home')
 
 
-@login_required
-def dislike(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    reaction, created = Reaction.objects.get_or_create(
-        user=request.user,
-        post=post
-    )
-    if not created:
-        if not reaction.reaction:
-            messages.error(request, 'You have already disliked this post.')
-        else:
-            reaction.reaction = False
-            reaction.save()
-            post.dislikes += 1
-            post.likes -= 1
-            post.save()
-    else:
-        reaction.reaction = False
-        reaction.save()
-        post.dislikes += 1
-        post.save()
-    return redirect('home')
 
-
-@login_required
-def my_reactions(request):
-    reactions = Reaction.objects.filter(user=request.user)
-    context = {'reactions': reactions}
-    return render(request, 'nebiti/my-reactions.html', context)
 
 
 

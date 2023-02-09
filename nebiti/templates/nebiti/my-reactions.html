@@ -18,7 +18,7 @@
       <tr class="reactions-table-row">
         <td class="reactions-table-data reactions-post-title-data">{{ reaction.post.title }}</td>
         <td class="reactions-table-data reactions-reaction-data {% if reaction.reaction %}positive{% else %}negative{% endif %}">
-          {% if reaction.reaction %}<i class="fas fa-thumbs-up"></i> Liked{% else %}<i class="fas fa-thumbs-down"></i> Disliked{% endif %}
+          {% if reaction.reaction %}<i class="fas fa-thumbs-up"></i> ვეთანხმები{% else %}<i class="fas fa-thumbs-down"></i> არ ვეთანხმები{% endif %}
         </td>
       </tr>
       {% endfor %}

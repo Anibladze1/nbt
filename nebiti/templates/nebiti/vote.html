@@ -1,0 +1,5 @@
+<form action="{% url 'vote' proposal.id %}" method="post">
+  {% csrf_token %}
+  <input type="submit" name="vote" value="Yes">
+  <input type="submit" name="vote" value="No">
+</form>

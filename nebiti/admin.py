@@ -1,8 +1,9 @@
 from django.contrib import admin
-from . models import Post, Reaction
-from django.contrib.auth.models import User
+from . models import Post, Voter, Vote
 
 
 # Register your models here.
 admin.site.register(Post)
-admin.site.register(Reaction)
+admin.site.register(Voter)
+admin.site.register(Vote)
+
