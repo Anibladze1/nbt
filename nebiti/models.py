@@ -8,6 +8,9 @@ class Voter(models.Model):
     name = models.CharField(max_length=100)
     delegate = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -26,14 +29,14 @@ class Post(models.Model):
         dislikes_count = self.vote_set.filter(vote=False).count()
         return dislikes_count
 
+    def __str__(self):
+        return self.title
+
 
 class Vote(models.Model):
     voter = models.ForeignKey(Voter, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     vote = models.BooleanField(default=0)
-
-    def __str__(self):
-        return f'{self.voter.name} voted {self.vote} on {self.post.title}'
 
     def cast_vote(self, voter, post, vote):
         delegate = voter.delegate
@@ -45,3 +48,5 @@ class Vote(models.Model):
         self.vote = vote
         self.save()
 
+    def __str__(self):
+        return f'{self.voter.name} voted {self.vote} on {self.post.title}'

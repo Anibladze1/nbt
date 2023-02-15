@@ -1,0 +1,10 @@
+{% include 'nebiti/header.html' %}
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Delegate my Vote</button>
+</form>
+
+
+{% include 'nebiti/footer.html' %}

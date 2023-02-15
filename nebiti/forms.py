@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Post
+from .models import Post, Voter
 
 
 class RegisterForm(UserCreationForm):
@@ -31,3 +31,13 @@ class PostForm(forms.ModelForm):
             'title': 'სათაური',
             'description': 'ტექსტი',
         }
+
+
+class DelegateVoteForm(forms.ModelForm):
+    class Meta:
+        model = Voter
+        fields = ['delegate']
+        labels = {
+            'delegate': 'დელეგატი',
+        }
+

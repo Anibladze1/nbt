@@ -1,18 +1,18 @@
 from django.contrib.auth.views import LoginView
 from django.urls import path
-from .views import register, user_login, user_logout, home, create_post, cast_vote
-
+from . import views
 
 # app_name = "nebiti"
 
 urlpatterns = [
-    path('', home, name='home'),
-    path('login/', user_login, name='login'),
-    path('register/', register, name='register'),
-    path('create_post/', create_post, name='create_post'),
-    path('cast-vote/<int:post_id>/<int:vote>/', cast_vote, name='cast_vote'),
+    path('', views.home, name='home'),
+    path('login/', views.user_login, name='login'),
+    path('register/', views.register, name='register'),
+    path('create_post/', views.create_post, name='create_post'),
+    path('cast-vote/<int:post_id>/<int:vote>/', views.cast_vote, name='cast_vote'),
+    path('delegate/', views.delegate_vote, name='delegate'),
 
-    path('logout/', user_logout, name='logout'),
+    path('logout/', views.user_logout, name='logout'),
 
 
 
