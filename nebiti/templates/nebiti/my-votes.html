@@ -1,0 +1,61 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/my-votes.css' %}">
+
+{% include 'nebiti/header.html' %}
+
+
+{% block content %}
+  <h1>My Votes</h1>
+
+  <h2>My Votes</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Post</th>
+        <th>Vote</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for vote in user_votes %}
+        <tr>
+          <td>{{ vote.post.title }}</td>
+          <td>{{ vote.vote }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="2">You haven't cast any votes yet.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+{% if delegated_votes %}
+  <h2>Delegated Votes</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Post</th>
+        <th>Delegate</th>
+        <th>Vote</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for vote in delegated_votes %}
+        <tr>
+          <td>{{ vote.post.title }}</td>
+          <td>{{ vote.voter.name }}</td>
+          <td>{{ vote.vote }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="3">No delegated votes.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
+
+{% endblock %}
+
+{% include 'nebiti/footer.html' %}

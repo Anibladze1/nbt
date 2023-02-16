@@ -6,10 +6,22 @@ from django.db import models
 class Voter(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
-    delegate = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
+    delegate = models.ManyToManyField('self', blank=True, symmetrical=False, related_name='delegated_by')
+    delegated_to = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True, related_name='delegate_of')
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if self.delegated_to:
+            self.delegated_to.delegate.add(self)
+
+        else:
+            self.delegate.delegated_to = None
+
+        super().save(*args, **kwargs)
+
+
 
 
 class Post(models.Model):
@@ -37,11 +49,13 @@ class Vote(models.Model):
     voter = models.ForeignKey(Voter, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     vote = models.BooleanField(default=0)
+    delegate = models.BooleanField(default=False)
 
     def cast_vote(self, voter, post, vote):
         delegate = voter.delegate
         if delegate:
             self.voter = delegate
+            self.delegate = True
         else:
             self.voter = voter
         self.post = post

@@ -1,0 +1,21 @@
+{% load static %}
+{#<link rel="stylesheet" type="text/css" href="{% static 'css/my-votes.css' %}">#}
+
+{% include 'nebiti/header.html' %}
+
+
+{% block content %}
+  <h1>{{ post.title }}</h1>
+  <p>{{ post.description }}</p>
+  <p>{{ likes_count }} likes, {{ dislikes_count }} dislikes</p>
+
+  <h2>Reactions:</h2>
+  <ul>
+    {% for vote in votes %}
+      <li>{{ vote.voter.name }} voted {{ vote.vote }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+
+
+{% include 'nebiti/footer.html' %}

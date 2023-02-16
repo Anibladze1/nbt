@@ -36,8 +36,8 @@ class PostForm(forms.ModelForm):
 class DelegateVoteForm(forms.ModelForm):
     class Meta:
         model = Voter
-        fields = ['delegate']
+        fields = ['delegated_to']
         labels = {
-            'delegate': 'დელეგატი',
+            'delegated_to': 'აირჩიე დელეგატი',
         }
 
