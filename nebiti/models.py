@@ -7,21 +7,26 @@ class Voter(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     delegate = models.ManyToManyField('self', blank=True, symmetrical=False, related_name='delegated_by')
-    delegated_to = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True, related_name='delegate_of')
+    delegated_to = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True,
+                                     related_name='delegate_of')
 
     def __str__(self):
         return self.name
 
     def save(self, *args, **kwargs):
-        if self.delegated_to:
-            self.delegated_to.delegate.add(self)
+        if self.pk is not None:
+            # If the voter already exists, check if they previously had a delegate
+            old_voter = Voter.objects.get(pk=self.pk)
+            if old_voter.delegated_to != self.delegated_to:
+                # If the delegated_to attribute has changed, remove the old voter from the delegate list
+                if old_voter.delegated_to is not None:
+                    old_voter.delegated_to.delegate.remove(old_voter)
 
-        else:
-            self.delegate.delegated_to = None
+                # Add the current voter to the delegate list of their new delegate
+                if self.delegated_to is not None:
+                    self.delegated_to.delegate.add(self)
 
-        super().save(*args, **kwargs)
-
-
+        super(Voter, self).save(*args, **kwargs)
 
 
 class Post(models.Model):

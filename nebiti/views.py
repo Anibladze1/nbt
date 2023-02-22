@@ -83,7 +83,6 @@ def cast_vote(request, post_id, vote):
     return redirect('home')
 
 
-
 # this is the view for the delegate vote form
 @login_required()
 def delegate_vote(request):
