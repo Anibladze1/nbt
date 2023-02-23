@@ -1,0 +1,19 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/delegate_list.css' %}">
+
+{% include 'nebiti/header.html' %}
+
+{% block content %}
+  <h1>Delegates</h1>
+  <ul>
+    {% for delegate in delegates %}
+      <li><a href="{% url 'view_profile' user_id=delegate.user.id %}">{{ delegate.name }}</a></li>
+    {% empty %}
+      <li>You have no delegates</li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}
+
+
+{% include 'nebiti/footer.html' %}

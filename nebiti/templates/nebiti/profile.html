@@ -8,5 +8,9 @@
     <p>Username: {{ user.username }}</p>
     <p>Email: {{ user.email }}</p>
     <a href="{% url 'delegate' %}">ხმის გადაცემა</a>
+    <a href="{% url 'delegates' %}">დელეგირებულები</a>
     <!-- Add more profile information here -->
 {% endblock %}
+
+
+{% include 'nebiti/footer.html' %}

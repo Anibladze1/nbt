@@ -1,0 +1,44 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/view_profile.css' %}">
+
+
+{% include 'nebiti/header.html' %}
+
+<h1>{{ voter.name }}'s Profile</h1>
+        <h2>User Information:</h2>
+    <ul>
+        <li>Username: {{ voter.user.username }}</li>
+        <li>Email: {{ voter.user.email }}</li>
+        <li>First Name: {{ voter.user.first_name }}</li>
+        <li>Last Name: {{ voter.user.last_name }}</li>
+    </ul>
+    <h2>Delegation Information:</h2>
+<ul>
+    {% if voter.delegate.all %}
+        <li>Delegates:</li>
+        <ul>
+            {% for delegate in voter.delegate.all %}
+                <li><a href="{% url 'view_profile' user_id=delegate.user.id %}">{{ delegate.name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if voter.delegated_to %}
+        <li>Delegated to: <a href="{% url 'view_profile' user_id=voter.delegated_to.user.id %}">{{ voter.delegated_to.name }}</a></li>
+    {% else %}
+        <li>Not delegated</li>
+    {% endif %}
+</ul>
+
+<h2>My Posts:</h2>
+{% for post in voter.user.post_set.all %}
+    <div class="post">
+        <h3 class="post-title">{{ post.title }}</h3>
+        <p class="post-content">{{ post.description }}</p>
+        <p>Likes: {{ post.likes }} Dislikes: {{ post.dislikes }}</p>
+    </div>
+{% empty %}
+    <p>No posts found.</p>
+{% endfor %}
+
+
+{% include 'nebiti/footer.html' %}

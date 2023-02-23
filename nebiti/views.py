@@ -116,3 +116,21 @@ def my_votes(request):
 @login_required
 def profile(request):
     return render(request, 'nebiti/profile.html')
+
+
+def view_profile(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    voter = get_object_or_404(Voter, user=user)
+    posts = Post.objects.filter(author=user)
+    context = {'user': user, 'voter': voter, 'posts': posts}
+    return render(request, 'nebiti/view_profile.html', context)
+
+
+
+# this is the view for the delegate list
+@login_required
+def delegate_list(request):
+    voter = request.user.voter
+    delegates = voter.delegate.all()
+    context = {'delegates': delegates}
+    return render(request, 'nebiti/delegate_list.html', context)

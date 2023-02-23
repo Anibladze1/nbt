@@ -129,3 +129,7 @@
   color: #ffffff;
   cursor: pointer;
 }
+
+.post-author-container a{
+    color: black;
+}

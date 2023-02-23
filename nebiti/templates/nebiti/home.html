@@ -24,7 +24,8 @@
                 <a href="{% url 'cast_vote' post.id 0 %}">არ ვეთანხმები</a>
                 <br>
             </div>
-        <p class="post-author-container">პოსტის ავტორი: {{ post.author }}</p>
+        <p class="post-author-container">პოსტის ავტორი: <a href="{% url 'view_profile' post.author.id %}">{{ post.author }}</a></p>
+
         {% else %}
           <p><a href="{% url 'login' %}">ხმის მისაცემად, გაიარეთ ავტორიზაცია</a>.</p>
         {% endif %}

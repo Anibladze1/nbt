@@ -1,0 +1,132 @@
+/* Main Container */
+.main-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+background-color: #f2f2f2;
+}
+
+/* Profile Container */
+.profile-container {
+width: 80%;
+margin: 20px 0;
+border: 1px solid #1abc9c;
+border-radius: 10px;
+padding: 20px;
+text-align: left;
+background-color: #ffffff;
+box-shadow: 0px 0px 10px 0px #1abc9c;
+}
+
+/* Profile Title */
+.profile-container h1 {
+font-size: 24px;
+font-weight: bold;
+margin-bottom: 20px;
+color: #1abc9c;
+text-align: center;
+}
+
+/* User Information */
+.profile-container h2:first-of-type {
+font-size: 20px;
+font-weight: bold;
+margin-top: 20px;
+margin-bottom: 10px;
+color: #1abc9c;
+text-align: left;
+}
+
+.profile-container ul:first-of-type li {
+font-size: 16px;
+margin-bottom: 10px;
+color: #34495e;
+text-align: left;
+}
+
+/* Delegation Information */
+.profile-container h2:nth-of-type(2) {
+font-size: 20px;
+font-weight: bold;
+margin-top: 20px;
+margin-bottom: 10px;
+color: #1abc9c;
+text-align: left;
+}
+
+.profile-container ul:nth-of-type(2) li {
+font-size: 16px;
+margin-bottom: 10px;
+color: #34495e;
+text-align: left;
+}
+
+.profile-container ul:nth-of-type(2) ul li {
+font-size: 16px;
+margin-bottom: 10px;
+color: #34495e;
+text-align: left;
+}
+
+.profile-container ul:nth-of-type(2) li a {
+color: #1abc9c;
+text-decoration: none;
+}
+
+.profile-container ul:nth-of-type(2) li a:hover {
+text-decoration: underline;
+}
+
+/* My Posts */
+.profile-container h2:nth-of-type(3) {
+font-size: 20px;
+font-weight: bold;
+margin-top: 20px;
+margin-bottom: 10px;
+color: #1abc9c;
+text-align: left;
+}
+
+.post {
+border-bottom: 1px solid #1abc9c;
+}
+
+/* Post Container */
+.post-container {
+width: 80%;
+margin: 20px 0;
+border: 1px solid #1abc9c;
+border-radius: 10px;
+padding: 20px;
+text-align: left;
+background-color: #ffffff;
+box-shadow: 0px 0px 10px 0px #1abc9c;
+}
+
+/* Post Title */
+.post-container h3 {
+font-size: 24px;
+font-weight: bold;
+margin-bottom: 20px;
+color: #1abc9c;
+text-align: left;
+}
+
+/* Post Author Container */
+.post-author-container {
+display: flex;
+align-items: center;
+background-color: #1abc9c;
+opacity: 0.9;
+color: #ffffff;
+padding: 10px;
+border-radius: 20px;
+margin-bottom: 20px;
+}
+
+/* Post Author */
+.post-author-container span {
+font-size: 16px;
+font-style: italic;
+margin-left: 10px;
+}

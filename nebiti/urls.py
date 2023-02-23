@@ -12,6 +12,9 @@ urlpatterns = [
     path('delegate/', views.delegate_vote, name='delegate'),
     path('my-votes/', views.my_votes, name='my_votes'),
     path('profile/', views.profile, name='profile'),
+    path('delegates/', views.delegate_list, name='delegates'),
+    path('profile/<int:user_id>/', views.view_profile, name='view_profile'),
+
 
     path('logout/', views.user_logout, name='logout'),
 
